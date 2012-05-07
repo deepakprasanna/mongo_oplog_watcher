@@ -2,7 +2,7 @@ require "singleton"
 require "mongo"
 include Mongo 
 
-class MongoSandBoxOplog
+class MongoSandBox
   include Singleton
   attr_accessor :tail
   def initialize
@@ -35,6 +35,6 @@ class MongoReplSet
 end
 
 while true
-  tail = MongoSandBoxOplog.instance.tail
+  tail = MongoSandBox.instance.tail
   MongoReplSet.instance.insert(tail.next) if tail.has_next?
 end  
